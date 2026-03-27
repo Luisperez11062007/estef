@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Sueño de Linternas ✨</title>
+<title>Nuestro Sueño ✨</title>
 
 <style>
 body {
@@ -11,91 +11,78 @@ body {
     background: linear-gradient(180deg, #2e003e, #800020, #ffc0cb, #f5f5dc);
     color: white;
     text-align: center;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
-/* Título */
 h1 {
     margin-top: 40px;
     font-size: 45px;
-    text-shadow: 0 0 15px #ffb6c1;
-    animation: fadeIn 2s ease-in-out;
+    text-shadow: 0 0 20px #ffb6c1;
 }
 
-p {
-    font-size: 18px;
-    opacity: 0.9;
-}
-
-/* Botones */
 button {
     padding: 15px 30px;
-    margin: 20px;
-    border: none;
+    margin: 10px;
     border-radius: 30px;
-    font-size: 16px;
+    border: none;
     cursor: pointer;
     background: linear-gradient(45deg, #800020, #ff69b4);
     color: white;
-    box-shadow: 0 0 10px #ff69b4;
-    transition: 0.3s;
+    font-size: 16px;
 }
 
-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px #fff;
-}
+button:hover { transform: scale(1.1); }
 
-/* Linternas más bonitas */
+/* Linternas */
 .lantern {
     position: absolute;
     bottom: -60px;
     width: 25px;
     height: 35px;
     background: radial-gradient(circle, #ffd700, #ff8c00);
-    border-radius: 50% 50% 40% 40%;
+    border-radius: 50%;
     animation: floatUp linear forwards;
     box-shadow: 0 0 20px #ffd700;
 }
-
 @keyframes floatUp {
-    0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-900px) scale(1.3);
-        opacity: 0;
-    }
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-900px); opacity: 0; }
 }
 
-/* Carta tipo sobre */
+/* Carta */
 #contenedorCarta {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    animation: abrir 1s forwards;
+    transform: translate(-50%, -50%);
 }
-
 .carta {
     width: 320px;
     padding: 25px;
     background: #f5f5dc;
     color: #333;
     border-radius: 15px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.6);
-    font-style: italic;
+    box-shadow: 0 0 25px black;
+    position: relative;
+}
+.cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
 }
 
-@keyframes abrir {
-    to {
-        transform: translate(-50%, -50%) scale(1);
-    }
+/* Quiz */
+.pregunta {
+    background: rgba(0,0,0,0.3);
+    padding: 15px;
+    margin: 15px auto;
+    border-radius: 10px;
+    width: 60%;
 }
 
-/* Estrellitas */
+/* Estrellas */
 .star {
     position: absolute;
     width: 2px;
@@ -103,73 +90,189 @@ button:hover {
     background: white;
     animation: twinkle 2s infinite;
 }
-
 @keyframes twinkle {
     0%,100% {opacity: 0.2;}
     50% {opacity: 1;}
 }
 
-@keyframes fadeIn {
-    from {opacity:0; transform: translateY(-20px);}
-    to {opacity:1; transform: translateY(0);}
+#final {
+    font-size: 40px;
+    margin-top: 30px;
+    color: pink;
 }
 </style>
 </head>
 
 <body>
 
-<h1>✨ Sueño de Linternas ✨</h1>
-<p>Como en un cuento… donde cada luz es un deseo 💫</p>
+<h1>✨ Nuestro Sueño ✨</h1>
+<p>Como las linternas… siempre encontré mi camino contigo 💜</p>
 
 <button onclick="linternas()">Soltar linternas 🏮</button>
 <button onclick="mostrarCarta()">Abrir carta 💌</button>
 
-<!-- Carta -->
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6c6b1d9b8f.mp3">
+</audio>
+
+<!-- CARTA -->
 <div id="contenedorCarta">
-    <div class="carta">
-        💜 Para alguien especial 💜
-        <br><br>
-        Entre miles de estrellas y sueños,
-        hay una luz que brilla más que todas…
-        <br><br>
-        Esa luz eres tú ✨
-        <br><br>
-        Como las linternas en el cielo,
-        deseo que cada uno de tus sueños
-        encuentre su camino.
-        <br><br>
-        Y si alguna vez te pierdes…
-        recuerda que siempre habrá una luz
-        guiándote 💫
-    </div>
+<div class="carta">
+<span class="cerrar" onclick="cerrarCarta()">✖</span>
+💜 Para TU_NOMBRE 💜
+<br><br>
+Eres mi momento favorito del día…  
+mi risa más sincera  
+y mi historia más bonita ✨
+<br><br>
+Te elegiría una y mil veces más 💫
+</div>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz">
+<h2>💡 ¿Qué tanto me conoces? 💜</h2>
+
+<div class="pregunta">
+<p>1. Nos dimos un beso en un parque 🌳</p>
+<button onclick="respuesta(this, true)" data-correcta="true">Verdadero</button>
+<button onclick="respuesta(this, false)" data-correcta="false">Falso</button>
+</div>
+
+<div class="pregunta">
+<p>2. Nuestro primer pico fue en el cine 🎬</p>
+<button onclick="respuesta(this, false)" data-correcta="false">Verdadero</button>
+<button onclick="respuesta(this, true)" data-correcta="true">Falso</button>
+</div>
+
+<div class="pregunta">
+<p>3. Me gusta el anime 🎌</p>
+<button onclick="respuesta(this, false)" data-correcta="false">Verdadero</button>
+<button onclick="respuesta(this, true)" data-correcta="true">Falso</button>
+</div>
+
+<div class="pregunta">
+<p>4. Nos hicimos novios el 18/06/2024 💕</p>
+<button onclick="respuesta(this, true)" data-correcta="true">Verdadero</button>
+<button onclick="respuesta(this, false)" data-correcta="false">Falso</button>
+</div>
+
+<div class="pregunta">
+<p>5. Cuando te enojas conmigo te ríes a los cinco minutos 😂</p>
+<button onclick="respuesta(this, true)" data-correcta="true">Verdadero</button>
+<button onclick="respuesta(this, false)" data-correcta="false">Falso</button>
+</div>
+
+<div class="pregunta">
+<p>6. En nuestro intento de primer beso chocamos con la nariz 😳</p>
+<button onclick="respuesta(this, true)" data-correcta="true">Verdadero</button>
+<button onclick="respuesta(this, false)" data-correcta="false">Falso</button>
+</div>
+
+<div class="pregunta">
+<p>7. Mis equipos favoritos son el Real Madrid y el Querétaro ⚽</p>
+<button onclick="respuesta(this, false)" data-correcta="false">Verdadero</button>
+<button onclick="respuesta(this, true)" data-correcta="true">Falso</button>
+</div>
+
+<div class="pregunta">
+<p>8. Mi bebida favorita es el Monster negro 🥤</p>
+<button onclick="respuesta(this, false)" data-correcta="false">Verdadero</button>
+<button onclick="respuesta(this, true)" data-correcta="true">Falso</button>
+</div>
+
+<div class="pregunta">
+<p>9. Me gustan los carros 🚗</p>
+<button onclick="respuesta(this, true)" data-correcta="true">Verdadero</button>
+<button onclick="respuesta(this, false)" data-correcta="false">Falso</button>
+</div>
+
+<div class="pregunta">
+<p>10. Te bañas diario sjsjsj 🚿</p>
+<button onclick="respuesta(this, false)" data-correcta="false">Verdadero</button>
+<button onclick="respuesta(this, true)" data-correcta="true">Falso</button>
+</div>
+
+<button onclick="verResultado()">Ver resultado 💫</button>
+<div id="resultado"></div>
+<div id="final"></div>
+
 </div>
 
 <script>
-// Linternas
+let puntos = 0;
+let total = 0;
+
 function linternas() {
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 20; i++) {
         let l = document.createElement("div");
         l.className = "lantern";
         l.style.left = Math.random() * window.innerWidth + "px";
         l.style.animationDuration = (4 + Math.random() * 4) + "s";
         document.body.appendChild(l);
-
         setTimeout(() => l.remove(), 7000);
     }
 }
 
-// Carta
 function mostrarCarta() {
     document.getElementById("contenedorCarta").style.display = "block";
 }
 
-// Estrellas automáticas
+function cerrarCarta() {
+    document.getElementById("contenedorCarta").style.display = "none";
+}
+
+function respuesta(btn, esCorrecta) {
+    let contenedor = btn.parentElement;
+    let botones = contenedor.querySelectorAll("button");
+
+    if (contenedor.classList.contains("respondida")) return;
+    contenedor.classList.add("respondida");
+
+    total++;
+
+    if (esCorrecta) {
+        btn.style.background = "green";
+        puntos++;
+    } else {
+        btn.style.background = "red";
+        botones.forEach(b => {
+            if (b.getAttribute("data-correcta") === "true") {
+                b.style.background = "green";
+            }
+        });
+    }
+
+    botones.forEach(b => b.disabled = true);
+}
+
+function verResultado() {
+    let porcentaje = (puntos / total) * 100;
+    let mensaje = "";
+
+    if (porcentaje === 100) {
+        mensaje = "💜 Eres perfecto/a para mí ✨";
+    } else if (porcentaje >= 60) {
+        mensaje = "💫 Me conoces bastante bien 😏";
+    } else {
+        mensaje = "😳 Hay que mejorar eh jaja 💜";
+    }
+
+    document.getElementById("resultado").innerHTML =
+        `Puntos: ${puntos}/${total} <br><br> ${mensaje}`;
+
+    setTimeout(() => {
+        document.getElementById("final").innerHTML = "💖 TE AMO 💖";
+        linternas();
+    }, 1500);
+}
+
+// estrellas
 for (let i = 0; i < 80; i++) {
     let star = document.createElement("div");
     star.className = "star";
     star.style.top = Math.random() * window.innerHeight + "px";
     star.style.left = Math.random() * window.innerWidth + "px";
-    star.style.animationDuration = (1 + Math.random() * 2) + "s";
     document.body.appendChild(star);
 }
 </script>
