@@ -30,10 +30,9 @@ button {
     color: white;
     font-size: 16px;
 }
-
 button:hover { transform: scale(1.1); }
 
-/* Linternas */
+/* LINTERNAS */
 .lantern {
     position: absolute;
     bottom: -60px;
@@ -49,7 +48,7 @@ button:hover { transform: scale(1.1); }
     100% { transform: translateY(-900px); opacity: 0; }
 }
 
-/* Carta */
+/* CARTA */
 #contenedorCarta {
     display: none;
     position: fixed;
@@ -73,16 +72,19 @@ button:hover { transform: scale(1.1); }
     cursor: pointer;
 }
 
-/* Quiz */
-.pregunta {
-    background: rgba(0,0,0,0.3);
-    padding: 15px;
-    margin: 15px auto;
-    border-radius: 10px;
-    width: 60%;
+/* PANTALLAS */
+.pantalla {
+    margin-top: 100px;
 }
 
-/* Estrellas */
+.frase {
+    font-size: 28px;
+    width: 70%;
+    margin: auto;
+    line-height: 1.5;
+}
+
+/* ESTRELLAS */
 .star {
     position: absolute;
     width: 2px;
@@ -129,73 +131,74 @@ Te elegiría una y mil veces más 💫
 </div>
 </div>
 
-<!-- QUIZ -->
+<!-- QUIZ HISTORIA -->
 <div id="quiz">
-<h2>💡 ¿Qué tanto me conoces? 💜</h2>
 
-<div class="pregunta">
-<p>1. Nos dimos un beso en un parque 🌳</p>
-<button onclick="respuesta(this, true)" data-correcta="true">Verdadero</button>
-<button onclick="respuesta(this, false)" data-correcta="false">Falso</button>
+<div class="pantalla" id="p1">
+<p class="frase">Como aquel momento… ¿Nos dimos un beso en un parque? 🌳💜</p>
+<button onclick="responder(this, true, 'p2')">Verdadero</button>
+<button onclick="responder(this, false, 'p2')">Falso</button>
 </div>
 
-<div class="pregunta">
-<p>2. Nuestro primer pico fue en el cine 🎬</p>
-<button onclick="respuesta(this, false)" data-correcta="false">Verdadero</button>
-<button onclick="respuesta(this, true)" data-correcta="true">Falso</button>
+<div class="pantalla" id="p2" style="display:none;">
+<p class="frase">Entre risas… ¿Nuestro primer pico fue en el cine? 🎬</p>
+<button onclick="responder(this, false, 'p3')">Verdadero</button>
+<button onclick="responder(this, true, 'p3')">Falso</button>
 </div>
 
-<div class="pregunta">
-<p>3. Me gusta el anime 🎌</p>
-<button onclick="respuesta(this, false)" data-correcta="false">Verdadero</button>
-<button onclick="respuesta(this, true)" data-correcta="true">Falso</button>
+<div class="pantalla" id="p3" style="display:none;">
+<p class="frase">En mis gustos… ¿Me gusta el anime? 🎌</p>
+<button onclick="responder(this, false, 'p4')">Verdadero</button>
+<button onclick="responder(this, true, 'p4')">Falso</button>
 </div>
 
-<div class="pregunta">
-<p>4. Nos hicimos novios el 18/06/2024 💕</p>
-<button onclick="respuesta(this, true)" data-correcta="true">Verdadero</button>
-<button onclick="respuesta(this, false)" data-correcta="false">Falso</button>
+<div class="pantalla" id="p4" style="display:none;">
+<p class="frase">Un día especial… ¿Nos hicimos novios el 18/06/2024? 💕</p>
+<button onclick="responder(this, true, 'p5')">Verdadero</button>
+<button onclick="responder(this, false, 'p5')">Falso</button>
 </div>
 
-<div class="pregunta">
-<p>5. Cuando te enojas conmigo te ríes a los cinco minutos 😂</p>
-<button onclick="respuesta(this, true)" data-correcta="true">Verdadero</button>
-<button onclick="respuesta(this, false)" data-correcta="false">Falso</button>
+<div class="pantalla" id="p5" style="display:none;">
+<p class="frase">Cuando te enojas… ¿Te ríes a los cinco minutos? 😂</p>
+<button onclick="responder(this, true, 'p6')">Verdadero</button>
+<button onclick="responder(this, false, 'p6')">Falso</button>
 </div>
 
-<div class="pregunta">
-<p>6. En nuestro intento de primer beso chocamos con la nariz 😳</p>
-<button onclick="respuesta(this, true)" data-correcta="true">Verdadero</button>
-<button onclick="respuesta(this, false)" data-correcta="false">Falso</button>
+<div class="pantalla" id="p6" style="display:none;">
+<p class="frase">Un momento único… ¿Chocamos la nariz en nuestro primer beso? 😳</p>
+<button onclick="responder(this, true, 'p7')">Verdadero</button>
+<button onclick="responder(this, false, 'p7')">Falso</button>
 </div>
 
-<div class="pregunta">
-<p>7. Mis equipos favoritos son el Real Madrid y el Querétaro ⚽</p>
-<button onclick="respuesta(this, false)" data-correcta="false">Verdadero</button>
-<button onclick="respuesta(this, true)" data-correcta="true">Falso</button>
+<div class="pantalla" id="p7" style="display:none;">
+<p class="frase">Sobre mí… ¿Mis equipos favoritos son el Real Madrid y Querétaro? ⚽</p>
+<button onclick="responder(this, false, 'p8')">Verdadero</button>
+<button onclick="responder(this, true, 'p8')">Falso</button>
 </div>
 
-<div class="pregunta">
-<p>8. Mi bebida favorita es el Monster negro 🥤</p>
-<button onclick="respuesta(this, false)" data-correcta="false">Verdadero</button>
-<button onclick="respuesta(this, true)" data-correcta="true">Falso</button>
+<div class="pantalla" id="p8" style="display:none;">
+<p class="frase">Algo cotidiano… ¿Mi bebida favorita es el Monster negro? 🥤</p>
+<button onclick="responder(this, false, 'p9')">Verdadero</button>
+<button onclick="responder(this, true, 'p9')">Falso</button>
 </div>
 
-<div class="pregunta">
-<p>9. Me gustan los carros 🚗</p>
-<button onclick="respuesta(this, true)" data-correcta="true">Verdadero</button>
-<button onclick="respuesta(this, false)" data-correcta="false">Falso</button>
+<div class="pantalla" id="p9" style="display:none;">
+<p class="frase">Sobre mis gustos… ¿Me gustan los carros? 🚗</p>
+<button onclick="responder(this, true, 'p10')">Verdadero</button>
+<button onclick="responder(this, false, 'p10')">Falso</button>
 </div>
 
-<div class="pregunta">
-<p>10. Te bañas diario sjsjsj 🚿</p>
-<button onclick="respuesta(this, false)" data-correcta="false">Verdadero</button>
-<button onclick="respuesta(this, true)" data-correcta="true">Falso</button>
+<div class="pantalla" id="p10" style="display:none;">
+<p class="frase">Y la más importante 😏… ¿Te bañas diario? 🚿</p>
+<button onclick="responder(this, false, 'finalPantalla')">Verdadero</button>
+<button onclick="responder(this, true, 'finalPantalla')">Falso</button>
 </div>
 
-<button onclick="verResultado()">Ver resultado 💫</button>
+<div class="pantalla" id="finalPantalla" style="display:none;">
+<h2>💫 Resultado final 💫</h2>
 <div id="resultado"></div>
 <div id="final"></div>
+</div>
 
 </div>
 
@@ -222,36 +225,32 @@ function cerrarCarta() {
     document.getElementById("contenedorCarta").style.display = "none";
 }
 
-function respuesta(btn, esCorrecta) {
-    let contenedor = btn.parentElement;
-    let botones = contenedor.querySelectorAll("button");
-
-    if (contenedor.classList.contains("respondida")) return;
-    contenedor.classList.add("respondida");
-
+function responder(btn, esCorrecta, siguiente) {
     total++;
 
     if (esCorrecta) {
-        btn.style.background = "green";
         puntos++;
+        btn.style.background = "green";
     } else {
         btn.style.background = "red";
-        botones.forEach(b => {
-            if (b.getAttribute("data-correcta") === "true") {
-                b.style.background = "green";
-            }
-        });
     }
 
-    botones.forEach(b => b.disabled = true);
+    setTimeout(() => {
+        btn.parentElement.style.display = "none";
+        document.getElementById(siguiente).style.display = "block";
+
+        if (siguiente === "finalPantalla") {
+            mostrarResultado();
+        }
+    }, 800);
 }
 
-function verResultado() {
+function mostrarResultado() {
     let porcentaje = (puntos / total) * 100;
     let mensaje = "";
 
     if (porcentaje === 100) {
-        mensaje = "💜 Eres perfecto/a para mí ✨";
+        mensaje = "💜 Me conoces perfectamente… eres todo para mí ✨";
     } else if (porcentaje >= 60) {
         mensaje = "💫 Me conoces bastante bien 😏";
     } else {
@@ -261,10 +260,8 @@ function verResultado() {
     document.getElementById("resultado").innerHTML =
         `Puntos: ${puntos}/${total} <br><br> ${mensaje}`;
 
-    setTimeout(() => {
-        document.getElementById("final").innerHTML = "💖 TE AMO 💖";
-        linternas();
-    }, 1500);
+    linternas();
+    document.getElementById("final").innerHTML = "💖 TE AMO 💖";
 }
 
 // estrellas
